@@ -67,5 +67,11 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "MP_2D-RPG.slnx"
+    "dotnet.defaultSolution": "MP_2D-RPG.slnx",
+    "csharp-dev-tools.solutionViewer.selectedWorkspaceSolutions": [
+        "MP_2D-RPG.slnx"
+    ],
+    "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": false,
+    "csharp-dev-tools.roslyn.showItemsFromUnimportedNamespaces": false,
+    "dotnet.completion.showNameCompletionSuggestions": false
 }
