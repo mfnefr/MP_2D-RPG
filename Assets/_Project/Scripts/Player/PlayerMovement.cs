@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _targetPos;
     private Rigidbody2D _rb;
     public bool isMoving = false;
+    
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
