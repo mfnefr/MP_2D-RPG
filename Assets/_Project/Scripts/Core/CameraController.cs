@@ -25,4 +25,9 @@ public class CameraController : MonoBehaviour
     {
         _camera.orthographicSize = 5;
     }
+
+    public void ZoomOut()
+    {
+        _camera.orthographicSize = 7;
+    }
 }
