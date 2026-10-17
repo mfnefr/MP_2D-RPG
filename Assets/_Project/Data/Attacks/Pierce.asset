@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730986f340047e843b3b83155399b5ef, type: 3}
   m_Name: Pierce
   m_EditorClassIdentifier: Assembly-CSharp::Attack
-  _attackName: 
-  _diceCount: 0
-  _diceSides: 0
+  _attackName: Pierce
+  _diceCount: 1
+  _diceSides: 8
