@@ -4,21 +4,15 @@ public class EnemyCombatUnit : CombatUnit
 {
     private bool isPlayerInRange = false;
 
-    void Start()
-    {
-        _maxHealth = 30;
-        _currentHealth = _maxHealth;
-        _armor = 5;
-        //_moveDistance = 2.0f;
-    }
-
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if(CombatManager.Instance.isCombatActive) return;
+
         if (collider.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            // CombatManager.Instance.currentEnemy = this;
-            // CombatManager.Instance.EnterCombatMode();
+            CombatManager.Instance.currentEnemy = this;
+            CombatManager.Instance.EnterCombat();
         }
     }
 

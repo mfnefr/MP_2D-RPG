@@ -16,7 +16,7 @@ public static class DiceRoller
         return totalRoll;
     }
 
-    // Used for iniciative rolls and attack (for hit) rolls, those are always d20 rolls
+    // Used for initiative rolls and attack (for hit) rolls, those are always d20 rolls
     public static int RollD20()
     {
         return Roll(1, D20_SIDES);

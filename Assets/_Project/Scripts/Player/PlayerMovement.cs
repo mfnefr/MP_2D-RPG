@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(CombatManager.Instance.isCombatActive) return;
+
         Move();
     }
 
