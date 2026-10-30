@@ -120,6 +120,8 @@ public class CombatManager : MonoBehaviour
 
     public void EnterCombat()
     {
+        if(isCombatActive) return;
+
         isCombatActive = true;
         currentPlayer.transform.position = currentPlayer.transform.position;
         _cameraController.ZoomOut();
