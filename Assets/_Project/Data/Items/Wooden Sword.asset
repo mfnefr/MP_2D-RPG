@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1759bc49b44a1f4aa58d9e2c1f92359, type: 3}
+  m_Name: Wooden Sword
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemID: 1
+  itemName: Wooden Sword
+  icon: {fileID: 1126344992095758660, guid: b5e4f5e0b335afc4d8dfe44e781afa18, type: 3}
+  isStackable: 0
+  isUsableInCombat: 1
+  healAmount: 0
+  bonusDamage: 0

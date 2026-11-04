@@ -20,7 +20,7 @@ public class Item : ScriptableObject
 
         if(healAmount > 0)
         {
-            target.currentHealth += DiceRoller.Roll(1, healAmount);
+            target.currentHealth += DiceRoller.Roll(1, healAmount) + 4;
             return true;
         }
         
