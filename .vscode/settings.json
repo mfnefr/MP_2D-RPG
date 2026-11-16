@@ -60,18 +60,18 @@
         "*.asset": "yaml",
         "*.meta": "yaml",
         "*.prefab": "yaml",
-        "*.unity": "yaml",
+        "*.unity": "yaml"
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "MP_2D-RPG.slnx",
     "csharp-dev-tools.solutionViewer.selectedWorkspaceSolutions": [
         "MP_2D-RPG.slnx"
     ],
     "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": false,
     "csharp-dev-tools.roslyn.showItemsFromUnimportedNamespaces": false,
-    "dotnet.completion.showNameCompletionSuggestions": false
+    "dotnet.completion.showNameCompletionSuggestions": false,
+    "dotnet.defaultSolution": "MP_2D-RPG.slnx"
 }

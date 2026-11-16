@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using static InventoryManager;
 
 public class CombatManager : MonoBehaviour
 {
@@ -23,12 +24,15 @@ public class CombatManager : MonoBehaviour
 
     [Header("Combat Settings")]
     public bool isCombatActive = false;
+    public GameObject combatPanel;
     private List<CombatUnit> _turnOrder = new List<CombatUnit>();
+    private List<ItemSlot> _combatSlots = new List<ItemSlot>();
     private CombatState _currentState;
 
     private void Awake()
     {
         Instance = this;
+        combatPanel.SetActive(isCombatActive);
     }
 
     void Start()
@@ -123,8 +127,12 @@ public class CombatManager : MonoBehaviour
         if(isCombatActive) return;
 
         isCombatActive = true;
+        SetSlotsForCombat();
+        combatPanel.SetActive(isCombatActive);
+
         currentPlayer.transform.position = currentPlayer.transform.position;
         _cameraController.ZoomOut();
+
         MakeTurnOrder();
         StartCombat();
     }
@@ -132,7 +140,30 @@ public class CombatManager : MonoBehaviour
     public void ExitCombat()
     {
         isCombatActive = false;
+        combatPanel.SetActive(isCombatActive);
         _cameraController.ZoomIn();
+    }
+
+    private void SetSlotsForCombat()
+    {
+        combatPanel.GetComponentsInChildren(true, _combatSlots);
+        List<ItemSlot> inventorySlots = InventoryManager.Instance.GetInventorySlots();
+        int index = 0;
+
+        foreach (ItemSlot slot in _combatSlots)
+        {
+            if (index >= inventorySlots.Count) break;
+
+            foreach (ItemSlot inventorySlot in inventorySlots)
+            {
+                if  (inventorySlots[index].item != null && inventorySlots[index].item.isUsableInCombat)
+                {
+                    slot.SetSlot(inventorySlots[index].item, inventorySlots[index].itemCount);
+                    index++;
+                    break;
+                }
+            }
+        }
     }
 }
 

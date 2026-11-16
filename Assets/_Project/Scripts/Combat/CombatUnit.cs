@@ -9,7 +9,7 @@ public class CombatUnit : MonoBehaviour
     private Rigidbody2D _rb;
 
     [Header("UI")]
-    public UnityEngine.GameObject healthBar;
+    public GameObject healthBar;
 
     [Header("Stats")]
     public int maxHealth;

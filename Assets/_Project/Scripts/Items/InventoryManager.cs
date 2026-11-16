@@ -27,6 +27,10 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public List<ItemSlot> GetInventorySlots(){
+        return _inventorySlots;
+    }
+
     public void AddItem(Item itemToAdd, int count = 1)
     {
         if (itemToAdd == null) return;
@@ -97,7 +101,7 @@ public class InventoryManager : MonoBehaviour
                 return true;
             }
         }
-        
+
         return false;
     }
 }
