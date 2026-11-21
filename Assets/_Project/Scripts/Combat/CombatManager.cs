@@ -132,10 +132,7 @@ public class CombatManager : MonoBehaviour
         isCombatActive = true;
         SetSlotsForCombat();
         combatPanel.SetActive(isCombatActive);
-        foreach (ItemSlot slot in _combatSlots)
-        {
-            slot.button.interactable = false;
-        }
+        DisableCombatSlots();
 
         currentPlayer.transform.position = currentPlayer.transform.position;
         _cameraController.ZoomOut();
@@ -173,14 +170,21 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void OnCombatButton()
+    public bool TryUseItem(Item item)
+    {
+        if(item == null || !item.CanUse(currentPlayer)) return false;
+        
+        DisableCombatSlots();
+        item.Use(currentPlayer, currentEnemy, EndPlayerTurn);
+        return true;
+    }
+
+    private void DisableCombatSlots()
     {
         foreach (ItemSlot slot in _combatSlots)
         {
             slot.button.interactable = false;
         }
-
-        StartCoroutine(currentPlayer.AttackSequence(currentEnemy, EndPlayerTurn));
     }
 }
 

@@ -1,35 +1,15 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item", menuName = "Scriptable Objects/Item")]
-public class Item : ScriptableObject
+public abstract class Item : ScriptableObject
 {
     [Header("General Data")]
     public int itemID;
     public string itemName;
     public Sprite icon;
     public bool isStackable = true;
-
-    [Header("Item Effects")]
     public bool isUsableInCombat = false;
-    public int healAmount = 0;
-    public int bonusDamage = 0;
 
-    public bool Use(CombatUnit target)
-    {
-        if(target != null && healAmount > 0)
-        {
-            Heal(target);
-            return true;
-        }else if(target != null && bonusDamage > 0)
-        {
-            return true;
-        }
-        
-        return false;
-    }
+    public abstract void Use(CombatUnit user, CombatUnit target, System.Action onActionComplete);
 
-    private void Heal(CombatUnit target)
-    {
-        target.currentHealth += DiceRoller.Roll(1, healAmount) + 4;
-    }
+    public virtual bool CanUse(CombatUnit user) => user != null;
 }

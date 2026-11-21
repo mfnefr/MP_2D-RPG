@@ -26047,7 +26047,7 @@ PrefabInstance:
     - target: {fileID: 6953270331977423728, guid: 0f4d1a34099806b43b112f682c2d0e72, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: d265f2958eba45b49af460c60e594cc9, type: 2}
+      objectReference: {fileID: 11400000, guid: f778266596145e1468024fd92383281c, type: 2}
     - target: {fileID: 6953270331977423728, guid: 0f4d1a34099806b43b112f682c2d0e72, type: 3}
       propertyPath: itemCount
       value: 1
@@ -28415,13 +28415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombatUnit
   healthBar: {fileID: 0}
-  maxHealth: 30
+  _stats: {fileID: 11400000, guid: 44a1b22b2ae96494bbc1545b00b4fbf0, type: 2}
   currentHealth: 0
-  armor: 0
-  moveDistance: 3
-  attacks:
-  - {fileID: 11400000, guid: 1c230377167fb7b458f5e4b2727b320b, type: 2}
-  - {fileID: 11400000, guid: d4d5254a45a62a44d8b24e799538d715, type: 2}
 --- !u!212 &1214815013
 SpriteRenderer:
   serializedVersion: 2
@@ -31943,12 +31938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombatUnit
   healthBar: {fileID: 0}
-  maxHealth: 100
+  _stats: {fileID: 11400000, guid: 98975fb4dbf551b478386c2f0350d766, type: 2}
   currentHealth: 0
-  armor: 0
-  moveDistance: 3
-  attacks:
-  - {fileID: 11400000, guid: f6efffd233a61ef4b8eba85bddc54654, type: 2}
 --- !u!61 &2058871837
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32289,7 +32280,7 @@ PrefabInstance:
     - target: {fileID: 6953270331977423728, guid: 0f4d1a34099806b43b112f682c2d0e72, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 51a7e353c5b8ba44c9598350d475623d, type: 2}
+      objectReference: {fileID: 11400000, guid: daba26713478db64cb4ae916b4eb9ef2, type: 2}
     - target: {fileID: 6953270331977423728, guid: 0f4d1a34099806b43b112f682c2d0e72, type: 3}
       propertyPath: itemCount
       value: 5

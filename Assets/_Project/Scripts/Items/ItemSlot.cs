@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
@@ -65,22 +64,22 @@ public class ItemSlot : MonoBehaviour
     {
         if(item == null) return;
 
-        if (item.Use(CombatManager.Instance.currentPlayer))
+        if (CombatManager.Instance.isCombatActive)
         {
-            if (item.isStackable)
+            if (CombatManager.Instance.TryUseItem(item) && item.isStackable)
             {
-                AddCount(-1);    
+                AddCount(-1);
             }
-            
-            if(itemCount <= 0)
-            {
-                ClearSlot();
-            }
+        }
 
-            if (CombatManager.Instance.isCombatActive)
-            {
-                CombatManager.Instance.OnCombatButton();
-            }
+        if (item.isStackable)
+        {
+            AddCount(-1);    
+        }
+            
+        if(itemCount <= 0)
+        {
+            ClearSlot();
         }
     }
 }

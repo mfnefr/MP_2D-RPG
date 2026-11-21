@@ -4,6 +4,12 @@ public class EnemyCombatUnit : CombatUnit
 {
     private bool isPlayerInRange = false;
 
+    public override int RollDamage()
+    {
+        Attack attack = attacks[Random.Range(0, attacks.Count)];
+        return attack.RollDamage();
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if(CombatManager.Instance.isCombatActive) return;

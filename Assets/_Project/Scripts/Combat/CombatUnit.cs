@@ -2,21 +2,22 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class CombatUnit : MonoBehaviour
+public abstract class CombatUnit : MonoBehaviour
 {
     [Header("General")]
     private Vector3 _startPos;
-    private Rigidbody2D _rb;
+    protected Rigidbody2D _rb;
 
     [Header("UI")]
     public GameObject healthBar;
 
     [Header("Stats")]
-    public int maxHealth;
+    public UnitStats _stats;
+    public int maxHealth => _stats.maxHealth;
+    public int armor => _stats.armor;
+    public float moveDistance => _stats.moveDistance;
     public int currentHealth;
-    public int armor;
-    public float moveDistance;
-    public List<Attack> attacks;
+    public List<Attack> attacks => _stats.attacks;
 
     protected virtual void Start()
     {
@@ -25,16 +26,8 @@ public class CombatUnit : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public int RollInitiative()
-    {
-        return DiceRoller.RollD20();
-    }
-
-    public int RollDamage()
-    {
-        Attack attack = attacks[Random.Range(0, attacks.Count)];
-        return attack.RollDamage();
-    }
+    public int RollInitiative() => DiceRoller.RollD20();
+    public abstract int RollDamage();
 
     public IEnumerator AttackSequence(CombatUnit target, System.Action onSequenceComplete)
     {
@@ -50,7 +43,7 @@ public class CombatUnit : MonoBehaviour
 
         int damage = RollDamage();
         target.currentHealth -= damage;
-        Debug.Log($"{gameObject.name} attacks {target.gameObject.name} for {damage} damage!");
+        Debug.Log($"{gameObject.name} attacked {target.gameObject.name} for {damage} damage!");
 
         yield return new WaitForSeconds(0.5f);
 
