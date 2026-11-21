@@ -3,15 +3,22 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class ItemSlot : MonoBehaviour, IPointerClickHandler
+public class ItemSlot : MonoBehaviour
 {
     [Header("Item Data")]
     public Item item;
     public int itemCount;
 
     [Header("UI References")]
+    public Button button;
     public Image icon;
     public TextMeshProUGUI itemCountText;
+
+    private void Awake()
+    {
+        button = GetComponent<Button>();
+        button.onClick.AddListener(OnSlotClick);
+    }
 
     private void Start()
     {
@@ -54,17 +61,25 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnSlotClick()
     {
         if(item == null) return;
 
         if (item.Use(CombatManager.Instance.currentPlayer))
         {
-            AddCount(-1);
+            if (item.isStackable)
+            {
+                AddCount(-1);    
+            }
             
             if(itemCount <= 0)
             {
                 ClearSlot();
+            }
+
+            if (CombatManager.Instance.isCombatActive)
+            {
+                CombatManager.Instance.OnCombatButton();
             }
         }
     }

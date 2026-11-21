@@ -16,14 +16,20 @@ public class Item : ScriptableObject
 
     public bool Use(CombatUnit target)
     {
-        if(target == null) return false;
-
-        if(healAmount > 0)
+        if(target != null && healAmount > 0)
         {
-            target.currentHealth += DiceRoller.Roll(1, healAmount) + 4;
+            Heal(target);
+            return true;
+        }else if(target != null && bonusDamage > 0)
+        {
             return true;
         }
         
         return false;
+    }
+
+    private void Heal(CombatUnit target)
+    {
+        target.currentHealth += DiceRoller.Roll(1, healAmount) + 4;
     }
 }

@@ -274,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSlot
   item: {fileID: 0}
   itemCount: 0
+  button: {fileID: 5010025521060627431}
   icon: {fileID: 1186198710690849381}
   itemCountText: {fileID: 6865770357455791039}
 --- !u!1 &1919471149212782638

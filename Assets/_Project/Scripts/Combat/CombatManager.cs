@@ -78,7 +78,10 @@ public class CombatManager : MonoBehaviour
 
     private void PlayerTurn()
     {
-        StartCoroutine(currentPlayer.AttackSequence(currentEnemy, EndPlayerTurn));
+        foreach (ItemSlot slot in _combatSlots)
+        {
+            slot.button.interactable = (slot.item != null);
+        }
     }
 
     private void EndPlayerTurn()
@@ -129,6 +132,10 @@ public class CombatManager : MonoBehaviour
         isCombatActive = true;
         SetSlotsForCombat();
         combatPanel.SetActive(isCombatActive);
+        foreach (ItemSlot slot in _combatSlots)
+        {
+            slot.button.interactable = false;
+        }
 
         currentPlayer.transform.position = currentPlayer.transform.position;
         _cameraController.ZoomOut();
@@ -164,6 +171,16 @@ public class CombatManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OnCombatButton()
+    {
+        foreach (ItemSlot slot in _combatSlots)
+        {
+            slot.button.interactable = false;
+        }
+
+        StartCoroutine(currentPlayer.AttackSequence(currentEnemy, EndPlayerTurn));
     }
 }
 

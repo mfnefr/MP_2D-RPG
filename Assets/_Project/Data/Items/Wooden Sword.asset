@@ -18,4 +18,4 @@ MonoBehaviour:
   isStackable: 0
   isUsableInCombat: 1
   healAmount: 0
-  bonusDamage: 0
+  bonusDamage: 1
