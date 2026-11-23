@@ -64,19 +64,11 @@ public class ItemSlot : MonoBehaviour
     {
         if(item == null) return;
 
-        if (CombatManager.Instance.isCombatActive)
+        if((CombatManager.Instance.isCombatActive && CombatManager.Instance.TryUseItem(item) && item.isStackable) || item.isStackable)
         {
-            if (CombatManager.Instance.TryUseItem(item) && item.isStackable)
-            {
-                AddCount(-1);
-            }
+            AddCount(-1);
         }
 
-        if (item.isStackable)
-        {
-            AddCount(-1);    
-        }
-            
         if(itemCount <= 0)
         {
             ClearSlot();
