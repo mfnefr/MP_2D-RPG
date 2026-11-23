@@ -4,16 +4,6 @@ using static InventoryManager;
 
 public class CombatManager : MonoBehaviour
 {
-    private enum CombatState
-    {
-        Start,
-        PlayerTurn,
-        EnemyTurn,
-        Busy,
-        Won,
-        Lost
-    }
-
     [Header("Object References")]
     public static CombatManager Instance { get; private set; }
     [SerializeField] private CameraController _cameraController;
@@ -27,17 +17,11 @@ public class CombatManager : MonoBehaviour
     public GameObject combatPanel;
     private List<CombatUnit> _turnOrder = new List<CombatUnit>();
     private List<ItemSlot> _combatSlots = new List<ItemSlot>();
-    private CombatState _currentState;
 
     private void Awake()
     {
         Instance = this;
         combatPanel.SetActive(isCombatActive);
-    }
-
-    void Start()
-    {
-        _currentState = CombatState.Start;
     }
 
     private void MakeTurnOrder()
@@ -66,12 +50,10 @@ public class CombatManager : MonoBehaviour
     {
         if(_turnOrder[0] == currentPlayer)
         {
-            _currentState = CombatState.PlayerTurn;
             PlayerTurn();
         }
         else
         {
-            _currentState = CombatState.EnemyTurn;
             EnemyTurn();
         }
     }
@@ -87,7 +69,6 @@ public class CombatManager : MonoBehaviour
     private void EndPlayerTurn()
     {
         if(IsCombatOver()) return;
-        _currentState = CombatState.EnemyTurn;
         EnemyTurn();
     }
 
@@ -99,7 +80,6 @@ public class CombatManager : MonoBehaviour
     private void EndEnemyTurn()
     {
         if(IsCombatOver()) return;
-        _currentState = CombatState.PlayerTurn;
         PlayerTurn();
     }
 
@@ -107,7 +87,6 @@ public class CombatManager : MonoBehaviour
     {
         if (currentPlayer.currentHealth <= 0)
         {
-            _currentState = CombatState.Lost;
             Destroy(currentPlayer.gameObject);
             ExitCombat();
             Debug.Log("Player has been defeated!");
@@ -115,7 +94,6 @@ public class CombatManager : MonoBehaviour
         }
         else if (currentEnemy.currentHealth <= 0)
         {
-            _currentState = CombatState.Won;
             Destroy(currentEnemy.gameObject);
             ExitCombat();
             Debug.Log("Enemy has been defeated!");
@@ -187,4 +165,3 @@ public class CombatManager : MonoBehaviour
         }
     }
 }
-
