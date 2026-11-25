@@ -94,6 +94,11 @@ public class CombatManager : MonoBehaviour
         }
         else if (currentEnemy.currentHealth <= 0)
         {
+            if(currentEnemy is EnemyCombatUnit enemy)
+            {
+                enemy.DropLoot();
+            }
+
             Destroy(currentEnemy.gameObject);
             ExitCombat();
             Debug.Log("Enemy has been defeated!");

@@ -59,7 +59,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("Inventory is full!");
     }
 
-    public void AddItemByName(string resourceName)
+    public void AddItemByName(string resourceName, int count)
     {
         Item loadedItem = Resources.Load<Item>("items/" + resourceName);
 
@@ -69,7 +69,7 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
-        AddItem(loadedItem);
+        AddItem(loadedItem, count);
     }
 
     public bool RemoveItem(string itemName, int countToRemove = 1)
@@ -94,6 +94,8 @@ public class InventoryManager : MonoBehaviour
 
     public bool HasItem(string itemName)
     {
+        Debug.Log($"{itemName}");
+        
         foreach(ItemSlot slot in _inventorySlots)
         {
             if(slot.item != null && slot.item.itemName == itemName)

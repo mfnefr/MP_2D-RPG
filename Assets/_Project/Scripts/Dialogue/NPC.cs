@@ -25,7 +25,6 @@ public class NPC : MonoBehaviour, IInteractable
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log($"Player entered range of NPC: {_npcName}");
             isPlayerInRange = true;
             _interactIcon.Show(transform);
         }
@@ -33,7 +32,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player") && DialogueManager.Instance.isDialoguePlaying)
         {
             isPlayerInRange = false;
             DialogueManager.Instance.EndDialogue();
@@ -45,7 +44,7 @@ public class NPC : MonoBehaviour, IInteractable
     {
         if (!DialogueManager.Instance.isDialoguePlaying)
         {
-            DialogueManager.Instance.StartDialogue(_inkKnotName);
+            DialogueManager.Instance.StartDialogue(_inkKnotName, _npcName);
         }
     }
 }

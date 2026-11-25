@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(CombatManager.Instance.isCombatActive || InventoryManager.Instance.isInventoryOpen) return;
+        if(CombatManager.Instance.isCombatActive || InventoryManager.Instance.isInventoryOpen || DialogueManager.Instance.isDialoguePlaying) return;
 
         Move();
     }
